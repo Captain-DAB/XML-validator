@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <title>XML Project Validation</title>
+ <script>
+ function validateXML() {
+ var xmlDoc, parser, validateMessage;
+ var xmlInput = document.getElementById("xmlInput").value;
+ 
+ 
+ parser = new DOMParser();
+ 
+ 
+ xmlDoc = parser.parseFromString(xmlInput, "application/xml");
+ 
+ 
+ if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+ validateMessage = "Your XML Code is Invalid:\n\n";
+ validateMessage += xmlDoc.getElementsByTagName("parsererror")[0].innerHTML;
+ } else {
+ validateMessage = "Your XML Code is valid.";
+ }
+ 
+ 
+ document.getElementById("validate").innerHTML = validateMessage;
+ }
+ </script>
+ </head>
+ <body style="background-color: crimson">
+ <h1 style="text-align:center; color: white;">XML Validation</h1>
+ <textarea id="xmlInput" rows="40" cols="60" placeholder="Paste your XML document here"></textarea>
+ <br>
+ <button style="text-align:center; padding:12px 20px; margin-left:150px; border:none; color:white; background-color:black;" onclick="validateXML()">Validate</button>
+ <br>
+ <pre style="color:whitesmoke; text-align:center; font-size:20px; font-family:sans-serif; font-weight:bold;" id="validate"></pre>
+ </body>
+ </html>
+ 
